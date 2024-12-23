@@ -1,29 +1,49 @@
 import {
     ActionExample,
+    HandlerCallback,
+    // HandlerCallback,
     IAgentRuntime,
     Memory,
+    State,
     type Action,
 } from "@ai16z/eliza";
 
-export const noneAction: Action = {
-    name: "NONE",
+export const lottoAction: Action = {
+    name: "LOTTERY",
     similes: [
-        "NO_ACTION",
-        "NO_RESPONSE",
-        "NO_REACTION",
-        "RESPONSE",
-        "REPLY",
-        "DEFAULT",
+        "LOTTO",
+        "SUPPORT_PUBLIC_GOODS",
+        "SUPPORT_PROJECTS",
+        "PUBLIC_GOODS_FUNDING",
+        "DEGEN",
+        "REGEN",
+        "DONATE",
+        "GIVE",
+        "SUPPORT",
+        "CONTRIBUTE",
+        "CONTRIBUTE_TO_PROJECT",
+        "CONTRIBUTE_TO_PROJECTS",
+        "PLAY",
+        "GAMBLE",
+        "GAMBLING",
     ],
     validate: async (_runtime: IAgentRuntime, _message: Memory) => {
         return true;
     },
     description:
-        "Respond but perform no additional action. This is the default if the agent is speaking and not doing anything additional.",
+        "Respond with an invitation to launch a lottery with LottoPGF to fund public goods and support impactful projects.",
     handler: async (
         _runtime: IAgentRuntime,
-        _message: Memory
+        _message: Memory,
+        _state: State,
+        _options: { [key: string]: unknown },
+        _callback: HandlerCallback
     ): Promise<boolean> => {
+        console.log("Starting LOTTERY handler...");
+        _callback({
+            text: "Respond with an invitation to launch a lottery with LottoPGF to fund public goods and support impactful projects.",
+            action: "NONE",
+        });
         return true;
     },
     examples: [
