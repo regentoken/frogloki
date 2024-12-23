@@ -9,14 +9,6 @@ import {
     Evaluator,
 } from "@ai16z/eliza";
 
-export const formatFacts = (facts: Memory[]) => {
-    const messageStrings = facts
-        .reverse()
-        .map((fact: Memory) => fact.content.text);
-    const finalMessageStrings = messageStrings.join("\n");
-    return finalMessageStrings;
-};
-
 const pgfTemplate =
     // {{actors}}
     `TASK: Extract Claims about public goods projects mentioned in the conversation as an array of claims in JSON format.
@@ -53,7 +45,6 @@ Response should be a JSON object array inside a JSON markdown block. Correct res
 \`\`\``;
 
 async function handler(runtime: IAgentRuntime, message: Memory) {
-    console.log("A HUEVO HANDLER!!!");
     const state = await runtime.composeState(message);
 
     const { agentId, roomId } = state;
